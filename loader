@@ -1,0 +1,67 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local UICorner = Instance.new("UICorner")
+local UICorner_2 = Instance.new("UICorner")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Frame.Position = UDim2.new(0.172596514, 0, 0.381017834, 0)
+Frame.Size = UDim2.new(0, 175, 0, 45)
+Frame.Active = true
+Frame.Draggable = true
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+TextLabel.Position = UDim2.new(0.00571429729, 0, 0, 0)
+TextLabel.Size = UDim2.new(0, 174, 0, 45)
+TextLabel.Font = Enum.Font.GothamBlack
+TextLabel.Text = "0 DW"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 24.000
+TextLabel.TextWrapped = true
+
+UICorner.Parent = TextLabel
+
+UICorner_2.Parent = Frame
+
+
+-- Scripts:
+
+local function XVYMLY_fake_script() -- ScreenGui.LocalScript 
+	local script = Instance.new('LocalScript', ScreenGui)
+
+	frame = script.Parent.Frame
+	frame.Draggable = true
+	frame.Active = true
+	frame.Selectable = true
+end
+coroutine.wrap(XVYMLY_fake_script)()
+
+repeat
+	wait(.1)
+	local num = 0
+	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+		if v.Name == "Double Weight" then
+			num += 1
+		end
+	end
+
+	if num == 0 then
+		for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+			if v.Name == "Double Weight" then
+				num += 1
+			end
+		end
+	end
+	TextLabel.Text = num.."DW"
+until num == 9999999999999
